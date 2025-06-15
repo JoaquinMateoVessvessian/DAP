@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  final String username;
+  final String password;
+  final String mail;
+  final String name;
+  const RegisterScreen({
+    super.key,
+    required this.username,
+    required this.password,
+    required this.mail,
+    required this.name,
+  });
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -16,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+      return Scaffold(
       body: Align(
         alignment: Alignment.topCenter,
         child: Padding(
@@ -26,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               SizedBox(height: 20),
               Text(
-                'Login',
+                'Register',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0),
               ),
               ),
@@ -67,7 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   SizedBox(width: 10),
-                  TextButton(
+                  _(
                     onPressed: () {
                       String username = usernameController.text;
                       String password = passwordController.text;
@@ -85,16 +95,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return;
                       }
                     },
-                    child: TextButton(
+                  ),
+                ],
+              ),
+              TextButton(
                       onPressed: () => context.go('/home'),
                       child: Text(
                         'Create Account',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),

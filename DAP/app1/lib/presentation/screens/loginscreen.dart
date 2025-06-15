@@ -131,16 +131,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text('login', style: TextStyle(fontSize: 20)),
                   ),
-                  SizedBox(width: 20,),
-                  Text('if you dont have an account you can register here:'),
-                  SizedBox(width: 10),
-                  TextButton(
-                    onPressed: () => context.go('/register'),
-                    child: Text('Register', style: TextStyle(fontSize: 20, color: Colors.blue)),
-                  ),
-
                 ],
               ),
+              SizedBox(height: 50),
+                  Text('if you dont have an account you can register here:'),
+                  SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => context.go('/register'),
+                    child: Text('Register', style: TextStyle(fontSize: 20)),
+                  ),
             ],
           ),
         ),
