@@ -14,7 +14,10 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final extra = (state.extra is Map<String, String>) ? state.extra as Map<String, String> : <String, String>{};
         final name = extra['name'] ?? '';
-        return HomeScreen(name: name);
+        final title = extra['title'] ?? '';
+        final photo = extra['photo'] ?? '';
+        final description = extra['description'] ?? '';
+        return HomeScreen(name: name, title: title, photo: photo, description: description);
       },
     ),
     GoRoute(
