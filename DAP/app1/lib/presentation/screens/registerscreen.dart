@@ -65,47 +65,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
                   SizedBox(
-                    width: 170,
+                    width: 250,
                     child: TextField(
                       controller: passwordController,
                       decoration: const InputDecoration(labelText: 'password'),
                       obscureText: true,
                     ),
                   ),
-                  SizedBox(width: 10),
-                  _(
-                    onPressed: () {
-                      String username = usernameController.text;
-                      String password = passwordController.text;
-                      String mail = mailController.text;
-                      String name = nameController.text;
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                      onPressed: () {
+                        String username = usernameController.text;
+                        String password = passwordController.text;
+                        String mail = mailController.text;
+                        String name = nameController.text;
 
-                      if (username.isEmpty || password.isEmpty || mail.isEmpty || name.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Tienes campos vacios', style: TextStyle(color: Colors.black)),
-                            duration: Duration(seconds: 2),
-                            backgroundColor: Colors.yellow,
-                          ),
-                        );
-                        return;
-                      }
-                    },
-                  ),
-                ],
-              ),
-              TextButton(
-                      onPressed: () => context.go('/home'),
-                      child: Text(
-                        'Create Account',
-                        style: TextStyle(fontSize: 20),
-                      ),
+                        if (username.isEmpty || password.isEmpty || mail.isEmpty || name.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Tienes campos vacios', style: TextStyle(color: Colors.black)),
+                              duration: Duration(seconds: 2),
+                              backgroundColor: Colors.yellow,
+                            ),
+                          );
+                          return;
+                        }
+                        context.go('/', extra: {
+                          'username': username,
+                          'password': password,
+                          'mail': mail,
+                          'name': name,
+                        });
+                      },
+                      child: Text('Create Account'),
                     ),
-            ],
+                ],
           ),
         ),
       ),

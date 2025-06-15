@@ -12,8 +12,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController mailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
 
   final List<Usuarios> usuarios = [
     Usuarios(name: 'Octaviano', username: 'octa', mail: 'octa@gmail.com', password: '2934'),
@@ -50,22 +48,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              SizedBox(
-                width: 250,
-                child: TextField(
-                  controller: mailController,
-                  decoration: const InputDecoration(labelText: 'mail'),
-                ),
-              ),
-              SizedBox(height: 20),
-              SizedBox(
-                width: 250,
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(labelText: 'name'),
-                ),
-              ),
-              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -82,35 +64,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       String username = usernameController.text;
                       String password = passwordController.text;
-                      String mail = mailController.text;
-                      String name = nameController.text;
 
-                      if (username.isEmpty || password.isEmpty || mail.isEmpty || name.isEmpty) {
+                      if (username.isEmpty || password.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Tienes campos vacios', style: TextStyle(color: Colors.black)),
                             duration: Duration(seconds: 2),
                             backgroundColor: Colors.yellow,
-                          ),
-                        );
-                        return;
-                      }
-                      
-                        Usuarios? usuario;
-                        try {
-                          usuario = usuarios.firstWhere(
-                            (u) => u.mail == mail,
-                          );
-                        } catch (e) {
-                          usuario = null;
-                        }
-
-                      if (usuario == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('El mail no tiene una cuenta registrada'),
-                            duration: Duration(seconds: 2),
-                            backgroundColor: Colors.red,
                           ),
                         );
                         return;
