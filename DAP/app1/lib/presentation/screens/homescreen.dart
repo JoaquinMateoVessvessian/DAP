@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:app1/entities/groceries.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
-  final String mail;
-  HomeScreen({super.key, required this.name, required this.mail});
+  HomeScreen({super.key, required this.name});
 
   final List<Groceries> groceries = [
     Groceries(title: 'Carrot', photo: 'https://makipura.uy/wp-content/uploads/2019/12/p9.jpg', description: 'A crunchy, sweet, orange root rich in vitamin A.'),  
@@ -25,16 +25,8 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 32),
             Center(
               child: Text(
-                'Welcome $name, here you have some',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.red),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(height: 10),
-            Center(
-              child: Text(
-                'Groceries',
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Colors.red),
+                'Welcome $name, here you have some groceries',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.red),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -54,7 +46,16 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
-            
+            FloatingActionButton(
+              onPressed: () {
+                context.go('/lista', extra: {
+                  'title': groceries[0].title,
+                  'photo': groceries[0].photo,
+                  'description': groceries[0].description,
+                });
+              },
+              child: Icon(Icons.add),
+            ),
           ],
         ),
       ),
