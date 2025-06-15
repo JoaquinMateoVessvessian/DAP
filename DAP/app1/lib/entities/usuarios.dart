@@ -1,13 +1,13 @@
 class Usuarios {
-  String name;
+  String? name;
   String username;
-  String mail;
+  String? mail;
   String password;
 
   Usuarios({
-    required this.name,
+    this.name,
     required this.username,
-    required this.mail,
+    this.mail,
     required this.password,
   });
 
@@ -15,4 +15,5 @@ class Usuarios {
   String toString() {
     return 'Usuarios{name: $name, username: $username, mail: $mail, password: $password}';
   }
+  final List<Usuarios> usuarios = [];
 }
