@@ -12,8 +12,17 @@ final List<Groceries> groceries = [
   ];
 
 class HomeScreen extends StatelessWidget {
-  final String name;
-  const HomeScreen({super.key, required this.name, required String title, required String photo, required String description});
+  final String username;
+  final String? photo;
+  final String title;
+  final String description;
+  const HomeScreen({
+    super.key,
+    required this.username,
+    required this.title,
+    this.photo,
+    required this.description,
+  });
 
 
   @override
@@ -26,7 +35,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 32),
             Center(
               child: Text(
-                'Welcome $name, here you have some groceries',
+                'Welcome $username, here you have some groceries',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.red),
                 textAlign: TextAlign.center,
               ),
@@ -39,7 +48,9 @@ class HomeScreen extends StatelessWidget {
                   final grocery = groceries[index];
                   return Card(
                     child: ListTile(
-                      leading: Image.network(grocery.photo!),
+                      leading: (grocery.photo != null && grocery.photo!.isNotEmpty)
+                        ? Image.network(grocery.photo!)
+                        : null,
                       title: Text(grocery.title),
                       subtitle: Text(grocery.description),
                     ),

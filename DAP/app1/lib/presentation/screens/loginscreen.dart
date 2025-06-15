@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app1/entities/usuarios.dart';
 
+final List<Usuarios> usuarios = [
+    Usuarios(name: 'Octaviano', username: 'octa', mail: 'octa@gmail.com', password: '2934'),
+    Usuarios(name: 'Joaquin', username: 'joaquito', mail: 'joaco@gmail.com', password: '9213'),
+    Usuarios(name: 'Pedro', username: 'pedrito', mail: 'pedro@gmail.com', password: '5324'),
+    Usuarios(name: 'Maria', username: 'maria123', mail: 'maria@gmail.com', password: '9234'),
+    Usuarios(name: 'Ana', username: 'ana456', mail: 'ana@gmail.com', password: '0242'),
+    Usuarios(name: 'Luis', username: 'luis789', mail: 'luis@gmail.com', password: '9423'),
+    Usuarios(name: 'Carlos', username: 'carlos101', mail: 'carlos@gmail.com', password: '5682'),
+    ];
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -13,15 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final List<Usuarios> usuarios = [
-    Usuarios(name: 'Octaviano', username: 'octa', mail: 'octa@gmail.com', password: '2934'),
-    Usuarios(name: 'Joaquin', username: 'joaquito', mail: 'joaco@gmail.com', password: '9213'),
-    Usuarios(name: 'Pedro', username: 'pedrito', mail: 'pedro@gmail.com', password: '5324'),
-    Usuarios(name: 'Maria', username: 'maria123', mail: 'maria@gmail.com', password: '9234'),
-    Usuarios(name: 'Ana', username: 'ana456', mail: 'ana@gmail.com', password: '0242'),
-    Usuarios(name: 'Luis', username: 'luis789', mail: 'luis@gmail.com', password: '9423'),
-    Usuarios(name: 'Carlos', username: 'carlos101', mail: 'carlos@gmail.com', password: '5682'),
-    ];
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                         return;
                       }
-                      if (usuario.username == username &&
-                          usuario.password == password &&
-                          usuario.name == name) {
-                        context.go('/home', extra: {'name': name, 'mail': mail});
+                      if (usuarios.any((u) => u.username == username && u.password == password)) {
+                        context.go('/home', extra: {'username': username});
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

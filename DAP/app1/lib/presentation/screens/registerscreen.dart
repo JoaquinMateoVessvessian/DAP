@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:app1/entities/usuarios.dart';
+import 'package:app1/presentation/screens/loginscreen.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   final String username;
@@ -91,13 +94,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                           return;
                         }
-                        context.go('/', extra: {
-                          'username': username,
-                          'password': password,
-                          'mail': mail,
-                          'name': name,
+                        usuarios.add(
+                          Usuarios(
+                            username: username,
+                            password: password,
+                            mail: mail,
+                            name: name,
+                          ),
+                        );
+                        context.go('/', extra: {'username': username,'password': password,'mail': mail,'name': name,
                         });
                       },
+                      
                       child: Text('Create Account'),
                     ),
                 ],
