@@ -13,4 +13,5 @@ class Groceries {
   String toString() {
     return 'Groceries{title: $title, password: $photo, description: $description}';
   }
+  List<Groceries> groceries = [];
 }

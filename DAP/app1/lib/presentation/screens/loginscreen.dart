@@ -35,42 +35,45 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('username', style: TextStyle(fontSize: 30)),
               SizedBox(height: 20),
+              Text(
+                'Login',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 0, 0),
+              ),
+              ),
+              SizedBox(height: 50),
               SizedBox(
                 width: 250,
                 child: TextField(
                   controller: usernameController,
+                  decoration: const InputDecoration(labelText: 'username'),
                 ),
               ),
-              SizedBox(height: 50),
-              Text('mail', style: TextStyle(fontSize: 30)),
               SizedBox(height: 20),
               SizedBox(
                 width: 250,
                 child: TextField(
                   controller: mailController,
+                  decoration: const InputDecoration(labelText: 'mail'),
                 ),
               ),
-              SizedBox(height: 50),
-              Text('name', style: TextStyle(fontSize: 30)),
               SizedBox(height: 20),
               SizedBox(
                 width: 250,
                 child: TextField(
                   controller: nameController,
+                  decoration: const InputDecoration(labelText: 'name'),
                 ),
               ),
-              SizedBox(height: 50),
-              Text('password', style: TextStyle(fontSize: 30)),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 150,
+                    width: 170,
                     child: TextField(
                       controller: passwordController,
+                      decoration: const InputDecoration(labelText: 'password'),
                       obscureText: true,
                     ),
                   ),

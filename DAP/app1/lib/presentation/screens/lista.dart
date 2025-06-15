@@ -1,4 +1,7 @@
+import 'package:app1/presentation/screens/homescreen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:app1/entities/groceries.dart';
 
 class Lista extends StatefulWidget {
   final String title;
@@ -15,34 +18,41 @@ class Lista extends StatefulWidget {
 }
 
 class _ListaState extends State<Lista> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _photoController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController photoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('add Grocerie')),
+      appBar: AppBar(title: const Text('add grocery')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
-              controller: _titleController,
+              controller: titleController,
               decoration: const InputDecoration(labelText: 'title'),
             ),
             TextField(
-              controller: _descriptionController,
+              controller: descriptionController,
               decoration: const InputDecoration(labelText: 'description'),
             ),
             TextField(
-              controller: _photoController,
+              controller: photoController,
               decoration: const InputDecoration(labelText: 'photo URL'),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
+            TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/homescreen');
+                context.go('/home', extra: {'title': titleController.text,'photo': photoController.text,'description': descriptionController.text,});
+                groceries.add(
+                  Groceries(
+                    title: titleController.text,
+                    photo: photoController.text,
+                    description: descriptionController.text,
+                  ),
+                );
               },
               child: const Text('Save'),
             ),

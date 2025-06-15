@@ -12,7 +12,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) {
-        final extra = state.extra as Map<String, String>;
+        final extra = (state.extra is Map<String, String>) ? state.extra as Map<String, String> : <String, String>{};
         final name = extra['name'] ?? '';
         return HomeScreen(name: name);
       },
@@ -20,7 +20,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/Lista',
       builder: (context, state) {
-        final extra = state.extra as Map<String, String>;
+        final extra = (state.extra is Map<String, String>) ? state.extra as Map<String, String> : <String, String>{};
         final title = extra['title'] ?? '';
         final photo = extra['photo'] ?? '';
         final description = extra['description'] ?? '';
