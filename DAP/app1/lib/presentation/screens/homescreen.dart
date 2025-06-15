@@ -46,6 +46,11 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16.0, bottom: 16.0),
+                child:
             FloatingActionButton(
               onPressed: () {
                 context.go('/lista', extra: {
@@ -55,6 +60,8 @@ class HomeScreen extends StatelessWidget {
                 });
               },
               child: Icon(Icons.add),
+            ),
+              ),
             ),
           ],
         ),
