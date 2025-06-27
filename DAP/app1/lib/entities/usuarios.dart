@@ -15,5 +15,4 @@ class Usuarios {
   String toString() {
     return 'Usuarios{name: $name, username: $username, mail: $mail, password: $password}';
   }
-  final List<Usuarios> usuarios = [];
 }

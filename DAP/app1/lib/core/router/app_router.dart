@@ -33,12 +33,8 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(path: '/register', 
     builder: (context, state){ 
-      final extra = (state.extra is Map<String, String>) ? state.extra as Map<String, String> : <String, String>{};
-      final username = extra['username'] ?? '';
-      final password = extra['password'] ?? '';
-      final mail = extra['mail'] ?? '';
-      final name = extra['name'] ?? '';
-      return RegisterScreen(username: username, password: password, mail: mail, name: name);
+      
+      return RegisterScreen();
     },
     ),
   ],

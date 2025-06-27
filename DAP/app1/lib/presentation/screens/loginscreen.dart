@@ -1,31 +1,24 @@
+import 'package:app1/presentation/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:app1/entities/usuarios.dart';
 
-final List<Usuarios> usuarios = [
-    Usuarios(name: 'Octaviano', username: 'octa', mail: 'octa@gmail.com', password: '2934'),
-    Usuarios(name: 'Joaquin', username: 'joaquito', mail: 'joaco@gmail.com', password: '9213'),
-    Usuarios(name: 'Pedro', username: 'pedrito', mail: 'pedro@gmail.com', password: '5324'),
-    Usuarios(name: 'Maria', username: 'maria123', mail: 'maria@gmail.com', password: '9234'),
-    Usuarios(name: 'Ana', username: 'ana456', mail: 'ana@gmail.com', password: '0242'),
-    Usuarios(name: 'Luis', username: 'luis789', mail: 'luis@gmail.com', password: '9423'),
-    Usuarios(name: 'Carlos', username: 'carlos101', mail: 'carlos@gmail.com', password: '5682'),
-    ];
-
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
+
+    final usuarios  = ref.watch(userProvider);
+
     return Scaffold(
       body: Align(
         alignment: Alignment.topCenter,

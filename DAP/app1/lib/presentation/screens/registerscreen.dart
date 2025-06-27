@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app1/entities/usuarios.dart';
-import 'package:app1/presentation/screens/loginscreen.dart';
+import 'package:app1/presentation/provider.dart';
 
 
-class RegisterScreen extends StatefulWidget {
-  final String username;
-  final String password;
-  final String mail;
-  final String name;
-  const RegisterScreen({
-    super.key,
-    required this.username,
-    required this.password,
-    required this.mail,
-    required this.name,
-  });
+
+class RegisterScreen extends ConsumerStatefulWidget {
+ 
+  const RegisterScreen({super.key,});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  ConsumerState<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController mailController = TextEditingController();
@@ -94,18 +87,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                           return;
                         }
-                        usuarios.add(
-                          Usuarios(
-                            username: username,
-                            password: password,
-                            mail: mail,
-                            name: name,
-                          ),
+                        Usuarios newuser = Usuarios(
+                          username: username,
+                          password: password,
+                          mail: mail,
+                          name: name,
                         );
-                        context.go('/', extra: {'username': username,'password': password,'mail': mail,'name': name,
-                        });
+
+                        List<Usuarios> user1 = ref.read(userProvider.notifier).state;
+                        ref.read(userProvider.notifier).state = [
+                          ...user1,
+                          newuser,
+                        ];
+                        context.go(
+                          '/',
+                        );
                       },
-                      
                       child: Text('Create Account'),
                     ),
                 ],

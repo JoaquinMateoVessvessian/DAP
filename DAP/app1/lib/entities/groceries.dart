@@ -13,5 +13,4 @@ class Groceries {
   String toString() {
     return 'Groceries{title: $title, photo: $photo, description: $description}';
   }
-  List<Groceries> groceries = [];
 }

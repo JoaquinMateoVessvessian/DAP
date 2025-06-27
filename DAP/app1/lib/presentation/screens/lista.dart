@@ -1,9 +1,10 @@
-import 'package:app1/presentation/screens/homescreen.dart';
+import 'package:app1/presentation/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app1/entities/groceries.dart';
 
-class Lista extends StatefulWidget {
+class Lista extends ConsumerStatefulWidget {
   final String title;
   final String photo;
   final String description;
@@ -13,11 +14,12 @@ class Lista extends StatefulWidget {
     required this.photo,
     required this.description,
   });
+
   @override
-  State<Lista> createState() => _ListaState();
+  ConsumerState<Lista> createState() => _ListaState();
 }
 
-class _ListaState extends State<Lista> {
+class _ListaState extends ConsumerState<Lista> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController photoController = TextEditingController();
@@ -45,14 +47,17 @@ class _ListaState extends State<Lista> {
             const SizedBox(height: 24),
             TextButton(
               onPressed: () {
-                context.go('/home', extra: {'title': titleController.text,'photo': photoController.text,'description': descriptionController.text,});
-                groceries.add(
-                  Groceries(
-                    title: titleController.text,
-                    photo: photoController.text,
-                    description: descriptionController.text,
-                  ),
+                Groceries newGrocery = Groceries(
+                  title: titleController.text,
+                  photo: photoController.text,
+                  description: descriptionController.text,
                 );
+                List<Groceries> grocery1 = ref.read(groceriesProvider.notifier).state;
+                ref.read(groceriesProvider.notifier).state = [
+                  ...grocery1,
+                  newGrocery
+                ];
+                context.go('/home');
               },
               child: const Text('Save'),
             ),

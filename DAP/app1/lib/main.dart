@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'core/router/app_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp (const ProviderScope(child: MainApp()));
 }
 
 
